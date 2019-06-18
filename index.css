@@ -1,0 +1,15 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+main > .play_button {
+    height: 250px;
+    width: 250px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

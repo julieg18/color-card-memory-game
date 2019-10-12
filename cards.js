@@ -3,20 +3,27 @@ const renderCardsButton = document.querySelector('.render-cards-btn');
 const exampleColor = 'green';
 const FLIPPED_CSS_CLASS = 'is-flipped';
 const MAXIMUM_FLIPPED_CARDS = 2;
-let cardArray = [
-  {
-    backColor: 'green',
+
+// you can create object to set the colors to upcoming elements
+
+let cardArray = [{
+    front_color: 'orange',
+    back_color: 'green',
     id: 1
   },
   {
-    backColor: 'orange',
+    front_color: 'yellow',
+    back_color: 'red',
     id: 2
   },
   {
-    backColor: 'red',
+    front_color: 'orange',
+    back_color: 'pink',
     id: 3
   }
 ];
+
+
 
 function flipCard(event) {
   // TODO - Check other flipped cards when selecting for the 3rd card to flip
@@ -58,6 +65,7 @@ function createCard() {
   card.classList.add('card');
   frontCard.classList.add('card__face', 'card__face--front');
   backCard.classList.add('card__face', 'card__face--back');
+  card.onclick = flipCard;
 
   card.appendChild(frontCard);
   card.appendChild(backCard);
@@ -69,10 +77,15 @@ function createCard() {
 
 function renderCards(event) {
   createCard();
-}
+  var cardElem = document.getElementsByClassName('scene');
 
-cards.forEach(card => {
-  card.addEventListener('click', flipCard);
-});
+  cardArray.forEach((card, index) => {
+    if (cardElem && cardElem.length !== 0 && cardElem[index]) {
+      cardElem[index].firstChild.firstChild.style.background = card.front_color;
+      cardElem[index].firstChild.lastChild.style.background = card.back_color;
+    }
+  })
+
+}
 
 renderCardsButton.addEventListener('click', renderCards);
